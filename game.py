@@ -20,6 +20,9 @@ class Game(object):
 	def ask_chip(player):
 		while True:
 			p = player.choice()
+			#print(p)
+			if p == 666:
+				return p;
 			if player.take(p):
 				break
 		return p
@@ -40,7 +43,7 @@ class Game(object):
 		print("Player {0} takes all!\n".format(self.players[winner].name))
 		self.statisstic_logger.addGame(self.players[winner], self.players[looser],
 				 self.stats[winner], self.stats[looser],
-				 datetime.now());
+				 datetime.now().__str__());
 		return True
 
 	def __str__(self):
@@ -51,7 +54,7 @@ class Game(object):
 		print('*** {0} vs. {1} ***'.format(self.players[0].name, self.players[1].name))
 		self.print_chips()
 		while True:
-			os.system('clear')
+			#os.system('clear')
 			print(self)
 			if self.players[0].check_chips() == False:
 				if self.end():
@@ -63,6 +66,10 @@ class Game(object):
 			#print('\nYour chips:')
 			#print(self.players[0])
 			p0 = Game.ask_chip(self.players[0])
+			if p0 == 666:
+				self.statisstic_logger.write_file()
+				print('bye!')
+				return 1
 			p1 = Game.ask_chip(self.players[1])
 			if p0 < p1:
 				winner = self.players[1]

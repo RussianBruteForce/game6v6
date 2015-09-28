@@ -43,6 +43,8 @@ class StdinChooser(Chooser):
 			return 5
 		elif case == 'y':
 			return 6
+		elif case == 'exit':
+			return 666
 		return case
 	
 	def select_one(self):
@@ -52,8 +54,11 @@ class StdinChooser(Chooser):
 			ch = input('Enter num from {0} to {1}:>'.format(self.min_ + 1,
 						   self.max_ + 1))
 			ch = self.switch_case(ch)
+			if (ch == 666):
+				return 666;
 			try:
 				ch = int(ch)
 			except ValueError:
 				return self.select_one()
+			
 		return ch - 1		
