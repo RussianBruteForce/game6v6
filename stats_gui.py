@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import sys
 import statistics
 from PyQt5.QtWidgets import *

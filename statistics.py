@@ -1,5 +1,6 @@
 import json
 import operator
+import sys
 
 class Statistics(object):
 	def __init__(self):
@@ -26,7 +27,11 @@ class Statistics(object):
 		f.close
 		
 	def read_file(self):
-		f = open(self.filename, 'r')
+		try:
+			f = open(self.filename, 'r')
+		except FileNotFoundError:
+			print ("Can't open {file}".format(file=self.filename))
+			sys.exit(-1)
 		self.db = json.loads(f.read())
 		#print(self.db[0]['time'])
 		f.close()
