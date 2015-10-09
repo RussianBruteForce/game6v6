@@ -7,12 +7,12 @@ class Game(object):
 	def __init__(self, statisstic_logger, player_name = 'Anon'):
 		self.new(player_name)
 		self.statisstic_logger = statisstic_logger
-	
+
 	def new(self, player_name = 'Anon'):
 		self.players = [Man(player_name, choosers.StdinChooser(0,5)),
-			        Comp(choosers.MyChooser(0,5))]
+				Comp(choosers.MyChooser(0,5))]
 		self.stats = [0, 0]
-	
+
 	def print_chips(self):
 		print('{2}:\t{0}\n{3}:\t{1}'.format(self.players[0], self.players[1],
 						    self.players[0].name, self.players[1].name))
@@ -34,7 +34,7 @@ class Game(object):
 	def end(self):
 		winner = 0
 		looser = 1
-		
+
 		if self.stats[1] > self.stats[0]:
 			winner = 1
 			looser = 0
@@ -42,13 +42,16 @@ class Game(object):
 			return False
 		print("Player {0} takes all!\n".format(self.players[winner].name))
 		self.statisstic_logger.addGame(self.players[winner], self.players[looser],
-				 self.stats[winner], self.stats[looser],
-				 datetime.now().__str__());
+				               self.stats[winner], self.stats[looser],
+				               datetime.now().__str__());
 		return True
 
 	def __str__(self):
 		return "\n*** Score ***\n {0}:\t{1}\n{2}:\t{3}".format(self.players[0].name, self.stats[0],
-						       self.players[1].name, self.stats[1])
+						                       self.players[1].name, self.stats[1])
+
+	def start(self, presenter):
+		pass
 
 	def start(self):
 		print('*** {0} vs. {1} ***'.format(self.players[0].name, self.players[1].name))
@@ -61,7 +64,7 @@ class Game(object):
 					return
 				else:
 					self.new(self.players[0].name)
-			
+
 			self.print_chips()
 			#print('\nYour chips:')
 			#print(self.players[0])
