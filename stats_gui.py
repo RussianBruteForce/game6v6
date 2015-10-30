@@ -37,6 +37,9 @@ class MainWindow(QMainWindow):
 		self.update()
 
 	def update(self):
+		if self.stats.new:
+			print('No stats, exiting.')
+			sys.exit(-1)
 		self.stats.read_file()
 		top_player = self.stats.top_player()
 		games_played = self.stats.games_played()
@@ -55,7 +58,7 @@ class MainWindow(QMainWindow):
 				wname = g['winner']['name'], wscore = g['winner']['score'],
 				lname = g['looser']['name'], lscore = g['looser']['score'])
 			log = log + line
-		        self.log_browser.setText(log)
+			self.log_browser.setText(log)
 
 
 	def resizeEvent(self, event):

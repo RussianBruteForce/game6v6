@@ -8,6 +8,7 @@ class Player(object):
 	
 	def take(self, chip):
 		if self.chips[chip]:
+			print('taken {c}'.format(c = chip))
 			self.chips[chip] = False
 			return True
 		else:
